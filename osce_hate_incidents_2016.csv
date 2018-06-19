@@ -1,69 +1,69 @@
-year,country,data_source,number_of_incidents
-2016,Austria,Official Records,425
-2016,Austria,"Civil Society, International Organisations and the Holy See",194
-2016,Belgium,Official Records,NA
-2016,Belgium,"Civil Society, International Organisations and the Holy See",28
-2016,Bosnia and Herzegovina,Official Records,NA
-2016,Bosnia and Herzegovina,"Civil Society, International Organisations and the Holy See",42
-2016,Canada,Official Records,1409
-2016,Canada,"Civil Society, International Organisations and the Holy See",216
-2016,Croatia,Official Records,35
-2016,Croatia,"Civil Society, International Organisations and the Holy See",20
-2016,Czech Republic,Official Records,49
-2016,Czech Republic,"Civil Society, International Organisations and the Holy See",4
-2016,Denmark,Official Records,274
-2016,Denmark,"Civil Society, International Organisations and the Holy See",6
-2016,Estonia,Official Records,15
-2016,Estonia,"Civil Society, International Organisations and the Holy See",1
-2016,Finland,Official Records,1311
-2016,Finland,"Civil Society, International Organisations and the Holy See",3
-2016,France,Official Records,1835
-2016,France,"Civil Society, International Organisations and the Holy See",365
-2016,Georgia,Official Records,42
-2016,Georgia,"Civil Society, International Organisations and the Holy See",48
-2016,Germany,Official Records,3598
-2016,Germany,"Civil Society, International Organisations and the Holy See",2150
-2016,Greece,Official Records,40
-2016,Greece,"Civil Society, International Organisations and the Holy See",135
-2016,Hungary,Official Records,33
-2016,Hungary,"Civil Society, International Organisations and the Holy See",15
-2016,Ireland,Official Records,NA
-2016,Ireland,"Civil Society, International Organisations and the Holy See",72
-2016,Italy,Official Records,803
-2016,Italy,"Civil Society, International Organisations and the Holy See",103
-2016,Latvia,Official Records,11
-2016,Latvia,"Civil Society, International Organisations and the Holy See",5
-2016,Lithuania,Official Records,20
-2016,Lithuania,"Civil Society, International Organisations and the Holy See",9
-2016,Netherlands,Official Records,4376
-2016,Netherlands,"Civil Society, International Organisations and the Holy See",121
-2016,Poland,Official Records,874
-2016,Poland,"Civil Society, International Organisations and the Holy See",93
-2016,Romania,Official Records,10
-2016,Romania,"Civil Society, International Organisations and the Holy See",4
-2016,Russian Federation,Official Records,1450
-2016,Russian Federation,"Civil Society, International Organisations and the Holy See",203
-2016,Serbia,Official Records,9
-2016,Serbia,"Civil Society, International Organisations and the Holy See",17
-2016,Slovakia,Official Records,10
-2016,Slovakia,"Civil Society, International Organisations and the Holy See",3
-2016,Slovenia,Official Records,NA
-2016,Slovenia,"Civil Society, International Organisations and the Holy See",11
-2016,Spain,Official Records,1272
-2016,Spain,"Civil Society, International Organisations and the Holy See",105
-2016,Sweden,Official Records,4862
-2016,Sweden,"Civil Society, International Organisations and the Holy See",21
-2016,Switzerland,Official Records,164
-2016,Switzerland,"Civil Society, International Organisations and the Holy See",29
-2016,The former Yugoslav Republic of Macedonia,Official Records,2
-2016,The former Yugoslav Republic of Macedonia,"Civil Society, International Organisations and the Holy See",18
-2016,Turkey,Official Records,14
-2016,Turkey,"Civil Society, International Organisations and the Holy See",86
-2016,Ukraine,Official Records,144
-2016,Ukraine,"Civil Society, International Organisations and the Holy See",140
-2016,United Kingdom,Official Records,80763
-2016,United Kingdom,"Civil Society, International Organisations and the Holy See",562
-2016,United States of America,Official Records,7321
-2016,United States of America,"Civil Society, International Organisations and the Holy See",678
-2016,Uzbekistan,Official Records,NA
-2016,Uzbekistan,"Civil Society, International Organisations and the Holy See",8
+year,country,,data_source,number_of_incidents
+2016,Austria,AT,Official Records,425
+2016,Austria,AT,"Civil Society, International Organisations and the Holy See",194
+2016,Belgium,BE,Official Records,NA
+2016,Belgium,BE,"Civil Society, International Organisations and the Holy See",28
+2016,Bosnia and Herzegovina,BA,Official Records,NA
+2016,Bosnia and Herzegovina,BA,"Civil Society, International Organisations and the Holy See",42
+2016,Canada,CA,Official Records,1409
+2016,Canada,CA,"Civil Society, International Organisations and the Holy See",216
+2016,Croatia,HR,Official Records,35
+2016,Croatia,HR,"Civil Society, International Organisations and the Holy See",20
+2016,Czech Republic,CZ,Official Records,49
+2016,Czech Republic,CZ,"Civil Society, International Organisations and the Holy See",4
+2016,Denmark,DK,Official Records,274
+2016,Denmark,DK,"Civil Society, International Organisations and the Holy See",6
+2016,Estonia,EE,Official Records,15
+2016,Estonia,EE,"Civil Society, International Organisations and the Holy See",1
+2016,Finland,FI,Official Records,1311
+2016,Finland,FI,"Civil Society, International Organisations and the Holy See",3
+2016,France,FR,Official Records,1835
+2016,France,FR,"Civil Society, International Organisations and the Holy See",365
+2016,Georgia,GE,Official Records,42
+2016,Georgia,GE,"Civil Society, International Organisations and the Holy See",48
+2016,Germany,DE,Official Records,3598
+2016,Germany,DE,"Civil Society, International Organisations and the Holy See",2150
+2016,Greece,GR,Official Records,40
+2016,Greece,GR,"Civil Society, International Organisations and the Holy See",135
+2016,Hungary,HU,Official Records,33
+2016,Hungary,HU,"Civil Society, International Organisations and the Holy See",15
+2016,Ireland,IE,Official Records,NA
+2016,Ireland,IE,"Civil Society, International Organisations and the Holy See",72
+2016,Italy,IT,Official Records,803
+2016,Italy,IT,"Civil Society, International Organisations and the Holy See",103
+2016,Latvia,LV,Official Records,11
+2016,Latvia,LV,"Civil Society, International Organisations and the Holy See",5
+2016,Lithuania,LT,Official Records,20
+2016,Lithuania,LT,"Civil Society, International Organisations and the Holy See",9
+2016,Netherlands,NL,Official Records,4376
+2016,Netherlands,NL,"Civil Society, International Organisations and the Holy See",121
+2016,Poland,PL,Official Records,874
+2016,Poland,PL,"Civil Society, International Organisations and the Holy See",93
+2016,Romania,RO,Official Records,10
+2016,Romania,RO,"Civil Society, International Organisations and the Holy See",4
+2016,Russian Federation,RU,Official Records,1450
+2016,Russian Federation,RU,"Civil Society, International Organisations and the Holy See",203
+2016,Serbia,RS,Official Records,9
+2016,Serbia,RS,"Civil Society, International Organisations and the Holy See",17
+2016,Slovakia,SK,Official Records,10
+2016,Slovakia,SK,"Civil Society, International Organisations and the Holy See",3
+2016,Slovenia,SI,Official Records,NA
+2016,Slovenia,SI,"Civil Society, International Organisations and the Holy See",11
+2016,Spain,ES,Official Records,1272
+2016,Spain,ES,"Civil Society, International Organisations and the Holy See",105
+2016,Sweden,SE,Official Records,4862
+2016,Sweden,SE,"Civil Society, International Organisations and the Holy See",21
+2016,Switzerland,CH,Official Records,164
+2016,Switzerland,CH,"Civil Society, International Organisations and the Holy See",29
+2016,The former Yugoslav Republic of Macedonia,MK,Official Records,2
+2016,The former Yugoslav Republic of Macedonia,MK,"Civil Society, International Organisations and the Holy See",18
+2016,Turkey,TR,Official Records,14
+2016,Turkey,TR,"Civil Society, International Organisations and the Holy See",86
+2016,Ukraine,UA,Official Records,144
+2016,Ukraine,UA,"Civil Society, International Organisations and the Holy See",140
+2016,United Kingdom,GB,Official Records,80763
+2016,United Kingdom,GB,"Civil Society, International Organisations and the Holy See",562
+2016,United States of America,US,Official Records,7321
+2016,United States of America,US,"Civil Society, International Organisations and the Holy See",678
+2016,Uzbekistan,UZ,Official Records,NA
+2016,Uzbekistan,UZ,"Civil Society, International Organisations and the Holy See",8
