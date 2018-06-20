@@ -1,4 +1,4 @@
-year,country,,data_source,number_of_incidents
+year,country,iso2,data_source,number_of_incidents
 2016,Austria,AT,Official Records,425
 2016,Austria,AT,"Civil Society, International Organisations and the Holy See",194
 2016,Belgium,BE,Official Records,NA
