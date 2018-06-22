@@ -1,0 +1,35 @@
+country,iso2c,iso3c,year,figures_civil_intern_orgs,figures_official_records
+Austria,AT,AUT,2016,194,425
+Belgium,BE,BEL,2016,28,NA
+Bosnia and Herzegovina,BA,BIH,2016,42,NA
+Canada,CA,CAN,2016,216,1409
+Croatia,HR,HRV,2016,20,35
+Czech Republic,CZ,CZE,2016,4,49
+Denmark,DK,DNK,2016,6,274
+Estonia,EE,EST,2016,1,15
+Finland,FI,FIN,2016,3,1311
+France,FR,FRA,2016,365,1835
+Georgia,GE,GEO,2016,48,42
+Germany,DE,DEU,2016,2150,3598
+Greece,GR,GRC,2016,135,40
+Hungary,HU,HUN,2016,15,33
+Ireland,IE,IRL,2016,72,NA
+Italy,IT,ITA,2016,103,803
+Latvia,LV,LVA,2016,5,11
+Lithuania,LT,LTU,2016,9,20
+Netherlands,NL,NLD,2016,121,4376
+Poland,PL,POL,2016,93,874
+Romania,RO,ROU,2016,4,10
+Russian Federation,RU,RUS,2016,203,1450
+Serbia,RS,SRB,2016,17,9
+Slovakia,SK,SVK,2016,3,10
+Slovenia,SI,SVN,2016,11,NA
+Spain,ES,ESP,2016,105,1272
+Sweden,SE,SWE,2016,21,4862
+Switzerland,CH,CHE,2016,29,164
+The former Yugoslav Republic of Macedonia,MK,MKD,2016,18,2
+Turkey,TR,TUR,2016,86,14
+Ukraine,UA,UKR,2016,140,144
+United Kingdom,GB,GBR,2016,562,80763
+United States of America,US,USA,2016,678,7321
+Uzbekistan,UZ,UZB,2016,8,NA
