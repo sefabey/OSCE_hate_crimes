@@ -3,6 +3,7 @@
 library(rworldmap)
 library(ggplot2)
 library(RColorBrewer)
+library(tidyverse)
 
 # data preperation====
 map.world <- map_data(map="world") #getting world map in dataframe format to plot in ggplot2
@@ -87,7 +88,8 @@ centroids <- rworldmap::getMap(resolution = 'high') %>%
     rownames_to_column() %>% 
     as.tibble() %>% 
     mutate(iso3c= countrycode::countrycode(rowname, origin = 'country.name', destination = 'iso3c' )) %>% 
-    left_join(osce_data)
+    left_join(osce_data) %>% 
+    distinct(.keep_all = T)
 centroids
 
 
@@ -115,6 +117,60 @@ plot4
 
 # still centroids of some countries seems to be off (us looks fine but France seems to have issues atm.)
 
+#trying to add text based on capital geolocations using CoordinateCleaner package
+capitals_joined <- CoordinateCleaner::capitals %>% 
+    mutate(iso3c=ISO3, long=longitude, lat=latitude) %>% 
+    left_join(osce_data)
 
-txtVal <- doBy::summaryBy(long + lat + Value ~ id, data=osce_map_joined, FUN=mean, keep.names=T)
-m3 <- m2 + geom_text(aes(x=long, y=lat, label=Value), data=txtVal, col="yellow", cex=3)
+
+plot5 <- ggplot()+ 
+    # theme(legend.position="bottom")+ 
+    geom_map(data=osce_map_joined, map=map.world, 
+             aes(map_id=region, x=long, y=lat, fill=osce_map_joined$figures_civil_intern_orgs))+
+    geom_text(data=capitals_joined, aes(x=long, y=lat, label = figures_civil_intern_orgs), size=2)+
+    scale_fill_gradientn (name="Incident Numbers",
+                          colours=rev(brewer.pal(9,"Spectral")),
+                          # na.value="white",
+                          na.value = "grey90",
+                          guide = "colourbar")+
+    coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
+    labs(x="Longitude", 
+         y='Latitude', 
+         title="Choropleth of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
+         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
+         caption="Social Data Science Lab, Cardiff University")+
+    hrbrthemes::theme_ipsum_rc()+
+    theme(plot.caption = element_text(size = 10))+
+    theme(legend.position = c(0.1,0.25))# for positioning the legend inside the plot
+plot5
+
+# still not looking as it should. Trying centroids dataset from the CoordinateCleaner package.
+
+centroids_joined <- CoordinateCleaner::centroids %>% 
+    mutate(iso3c=iso3, long=longitude, lat=latitude) %>% 
+    left_join(osce_data) %>% 
+    distinct(iso3c, .keep_all = T)
+
+
+plot6 <- ggplot()+ 
+    # theme(legend.position="bottom")+ 
+    geom_map(data=osce_map_joined, map=map.world, 
+             aes(map_id=region, x=long, y=lat, fill=osce_map_joined$figures_civil_intern_orgs))+
+    geom_text(data=centroids_joined, aes(x=long, y=lat, label = figures_civil_intern_orgs), size=3)+
+    scale_fill_gradientn (name="Incident Numbers",
+                          colours=rev(brewer.pal(9,"Spectral")),
+                          # na.value="white",
+                          na.value = "grey90",
+                          guide = "colourbar")+
+    coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
+    labs(x="Longitude", 
+         y='Latitude', 
+         title="Choropleth of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
+         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
+         caption="Social Data Science Lab, Cardiff University")+
+    hrbrthemes::theme_ipsum_rc()+
+    theme(plot.caption = element_text(size = 10))+
+    theme(legend.position = c(0.1,0.25))# for positioning the legend inside the plot
+plot6
+
+# much better! as they say, 6th time is the charm!
