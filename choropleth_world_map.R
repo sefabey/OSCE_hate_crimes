@@ -156,7 +156,7 @@ plot6 <- ggplot()+
     # theme(legend.position="bottom")+ 
     geom_map(data=osce_map_joined, map=map.world, 
              aes(map_id=region, x=long, y=lat, fill=osce_map_joined$figures_civil_intern_orgs))+
-    geom_text(data=centroids_joined, aes(x=long, y=lat, label = figures_civil_intern_orgs), size=3)+
+    geom_text(data=centroids_joined, aes(x=long, y=lat, label = figures_civil_intern_orgs), size=2.5)+
     scale_fill_gradientn (name="Incident Numbers",
                           colours=rev(brewer.pal(9,"Spectral")),
                           # na.value="white",
