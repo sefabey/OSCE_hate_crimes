@@ -173,4 +173,5 @@ plot6 <- ggplot()+
     theme(legend.position = c(0.1,0.25))# for positioning the legend inside the plot
 plot6
 
+ggsave("Choroplet_001.png", width = 16, height = 9, units = "in" , dpi = 300, scale = 1.5)
 # much better! as they say, 6th time is the charm!
