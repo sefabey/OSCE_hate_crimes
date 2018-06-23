@@ -12,6 +12,7 @@ Things to try:
 library(Rcartogram)
 library(getcartr)
 library(ggplot2)
+library(tidyverse)
 
 world <- readShapePoly('TM_WORLD_BORDERS-0.3/TM_WORLD_BORDERS-0.3.shp')
 
