@@ -178,7 +178,7 @@ plot6 <- ggplot()+
 
 plot6
 
-ggsave("viz/Choroplet_001_civilorg.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+ggsave("viz/Choroplet_002_civilorg.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
 # much better! as they say, 6th time is the charm!
 
 
@@ -206,4 +206,4 @@ plot7 <- ggplot()+
     theme(legend.key.size = unit(0.4, "in"))
 plot7
 
-ggsave("viz/Choroplet_001_official.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+ggsave("viz/Choroplet_002_official.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
