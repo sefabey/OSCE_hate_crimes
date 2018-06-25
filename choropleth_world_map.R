@@ -155,13 +155,16 @@ centroids_joined <- CoordinateCleaner::centroids %>%
 plot6 <- ggplot()+ 
     # theme(legend.position="bottom")+ 
     geom_map(data=osce_map_joined, map=map.world, 
-             aes(map_id=region, x=long, y=lat, fill=osce_map_joined$figures_civil_intern_orgs))+
+             aes(map_id=region, x=long, y=lat, fill=osce_map_joined$figures_civil_intern_orgs %>% log2))+
     geom_text(data=centroids_joined, aes(x=long, y=lat, label = figures_civil_intern_orgs), size=2.5)+
-    scale_fill_gradientn (name="Incident Numbers",
-                          colours=rev(brewer.pal(9,"Spectral")),
+    scale_fill_gradientn (name="Incident Counts",
+                          colours=rev(brewer.pal(11,"Spectral")),
                           # na.value="white",
                           na.value = "grey90",
-                          guide = "colourbar")+
+                          guide = "colourbar",
+                          breaks= rep(1:11),
+                          labels=c(2,5, 10, 20, 30, 50, 100, 250, 500, 1000, 2000)
+                          )+
     coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Longitude", 
          y='Latitude', 
@@ -170,8 +173,37 @@ plot6 <- ggplot()+
          caption="Social Data Science Lab, Cardiff University")+
     hrbrthemes::theme_ipsum_rc()+
     theme(plot.caption = element_text(size = 10))+
-    theme(legend.position = c(0.1,0.25))# for positioning the legend inside the plot
+    theme(legend.position = c(0.1,0.25))+# for positioning the legend inside the plot
+    theme(legend.key.size = unit(0.4, "in"))
+
 plot6
 
-ggsave("Choroplet_001.png", width = 16, height = 9, units = "in" , dpi = 300, scale = 1.5)
+ggsave("viz/Choroplet_001_civilorg.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
 # much better! as they say, 6th time is the charm!
+
+
+plot7 <- ggplot()+ 
+    # theme(legend.position="bottom")+ 
+    geom_map(data=osce_map_joined, map=map.world, 
+             aes(map_id=region, x=long, y=lat, fill= osce_map_joined$figures_official_records %>% log() ))+
+    geom_text(data=centroids_joined, aes(x=long, y=lat, label = figures_official_records), size=2.5)+
+    scale_fill_gradientn (name="Incident Counts",
+                          colours=rev(brewer.pal(10,"Spectral")),
+                          # na.value="white",
+                          na.value = "grey90",
+                          guide = "colorbar",
+                          breaks= rep(1:12),
+                          labels=c(5, 10, 20, 50, 100, 200, 1000, 5000, 10000, 40000,80000, 100000))+
+    coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
+    labs(x="Longitude", 
+         y='Latitude', 
+         title="Choropleth of Racist and Xenophobic Incidents Recorded by the Police in Participating States in 2016",
+         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
+         caption="Social Data Science Lab, Cardiff University")+
+    hrbrthemes::theme_ipsum_rc()+
+    theme(plot.caption = element_text(size = 10))+
+    theme(legend.position = c(0.1,0.25))+# for positioning the legend inside the plot
+    theme(legend.key.size = unit(0.4, "in"))
+plot7
+
+ggsave("viz/Choroplet_001_official.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
