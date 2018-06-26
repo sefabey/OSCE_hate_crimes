@@ -151,6 +151,7 @@ centroids_joined <- CoordinateCleaner::centroids %>%
     left_join(osce_data) %>% 
     distinct(iso3c, .keep_all = T)
 
+# final plots ======
 
 plot6 <- ggplot()+ 
     # theme(legend.position="bottom")+ 
