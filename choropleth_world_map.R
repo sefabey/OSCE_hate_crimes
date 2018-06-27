@@ -1,4 +1,9 @@
 # Choropleth world map
+# Choropleth world map
+# install.packages("rworldmap")
+# install.packages("countrycode")
+# install.packages("hrbrthemes")
+# install.packages("CoordinateCleaner")
 
 library(rworldmap)
 library(ggplot2)
