@@ -132,6 +132,7 @@ world.f2_official %>%
     mutate( .$ISO3%in%'USA', longit=longit+5, latid=latid-5)
 
 world.f2_official$ISO3=='USA' 
+# temp=======
 
 carto_official <- ggplot(world.f2_official, aes(long, lat, group = group, fill = world.f2_official$hate_fig_official %>% log))+
     geom_polygon()+
