@@ -91,7 +91,7 @@ carto_civil <- ggplot(world.f2, aes(long, lat, group = group, fill = world.f2$ha
 
 carto_civil
 
-ggsave("viz/Cartogram_002_civilorg.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+# ggsave("viz/Cartogram_002_civilorg.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
 
 # do the same for hate fig official
 
@@ -158,4 +158,117 @@ carto_official <- ggplot(world.f2_official, aes(long, lat, group = group, fill =
 
 carto_official
 
-ggsave("viz/Cartogram_002_official.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+# ggsave("viz/Cartogram_002_official.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+
+
+# These are done. Now off to different versions of these plots.
+
+# cartograms without labels======
+
+carto_civil_wo_labels <- ggplot(world.f2, aes(long, lat, group = group, fill = world.f2$hate_fig_civil %>% log2))+
+    geom_polygon()+
+    # geom_text(data=world.f2, aes(x=longit, y=latid, label = label_text_civil),size=4)+ #cant ge this to work
+    # geom_text(data=world.f2, aes(x=longit, y=latid, label = ISO3),size=4)+ #cant ge this to work
+    scale_fill_gradientn (name="Incident Counts",
+                          colours=rev(brewer.pal(8,"Spectral")),
+                          # na.value="white",
+                          na.value = "grey90",
+                          guide = "colourbar",
+                          breaks= rep(1:11),
+                          labels=c(2,5, 10, 20, 30, 50, 100, 250, 500, 1000, 2000)
+    )+
+    # coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
+    labs(x="Distorted Longitude", 
+         y='Distorted Latitude', 
+         title="Cartogram of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
+         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
+         caption="Social Data Science Lab, Cardiff University")+
+    hrbrthemes::theme_ipsum_rc()+
+    theme(plot.caption = element_text(size = 12))+
+    theme(legend.position = c(0.1,0.25))+
+    theme(legend.key.size = unit(0.4, "in"))
+
+carto_civil_wo_labels
+ggsave("viz/Cartogram_002_civil_wo_labels.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+
+
+carto_official_wo_labels <- ggplot(world.f2_official, aes(long, lat, group = group, fill = world.f2_official$hate_fig_official %>% log))+
+    geom_polygon()+
+    # geom_text(data=world.f2_official, aes(x=longit, y=latid, label = label_text_official),size=3.5)+ #cant ge this to work
+    # geom_text(data=world.f2, aes(x=longit, y=latid, label = ISO3),size=4)+ #cant ge this to work
+    scale_fill_gradientn (name="Incident Counts",
+                          colours=rev(brewer.pal(8,"Spectral")),
+                          # na.value="white",
+                          na.value = "grey90",
+                          guide = "colourbar",
+                          breaks= rep(1:12),
+                          labels=c(5, 10, 20, 50, 100, 200, 1000, 5000, 10000, 40000,80000, 100000))+
+    # coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
+    labs(x="Distorted Longitude", 
+         y='Distorted Latitude', 
+         title="Cartogram of Racist and Xenophobic Incidents Recorded by the Police in Participating States in 2016",
+         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
+         caption="Social Data Science Lab, Cardiff University")+
+    hrbrthemes::theme_ipsum_rc()+
+    theme(plot.caption = element_text(size = 12))+
+    theme(legend.position = c(0.1,0.25))+
+    theme(legend.key.size = unit(0.4, "in"))
+
+carto_official_wo_labels
+ggsave("viz/Cartogram_002_official_wo_labels.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+
+
+# cartograms with only the country ISO3 code
+
+
+carto_civil_countrycodes <- ggplot(world.f2, aes(long, lat, group = group, fill = world.f2$hate_fig_civil %>% log2))+
+    geom_polygon()+
+    # geom_text(data=world.f2, aes(x=longit, y=latid, label = label_text_civil),size=4)+ #cant ge this to work
+    geom_text(data=world.f2, aes(x=longit, y=latid, label = ISO3),size=4)+
+    scale_fill_gradientn (name="Incident Counts",
+                          colours=rev(brewer.pal(8,"Spectral")),
+                          # na.value="white",
+                          na.value = "grey90",
+                          guide = "colourbar",
+                          breaks= rep(1:11),
+                          labels=c(2,5, 10, 20, 30, 50, 100, 250, 500, 1000, 2000)
+    )+
+    # coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
+    labs(x="Distorted Longitude", 
+         y='Distorted Latitude', 
+         title="Cartogram of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
+         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
+         caption="Social Data Science Lab, Cardiff University")+
+    hrbrthemes::theme_ipsum_rc()+
+    theme(plot.caption = element_text(size = 12))+
+    theme(legend.position = c(0.1,0.25))+
+    theme(legend.key.size = unit(0.4, "in"))
+
+carto_civil_countrycodes
+ggsave("viz/Cartogram_002_civil_countrycodes.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+
+
+carto_official_countrycodes <- ggplot(world.f2_official, aes(long, lat, group = group, fill = world.f2_official$hate_fig_official %>% log))+
+    geom_polygon()+
+    # geom_text(data=world.f2_official, aes(x=longit, y=latid, label = label_text_official),size=3.5)+ #cant ge this to work
+    geom_text(data=world.f2, aes(x=longit, y=latid, label = ISO3),size=4)+ 
+    scale_fill_gradientn (name="Incident Counts",
+                          colours=rev(brewer.pal(8,"Spectral")),
+                          # na.value="white",
+                          na.value = "grey90",
+                          guide = "colourbar",
+                          breaks= rep(1:12),
+                          labels=c(5, 10, 20, 50, 100, 200, 1000, 5000, 10000, 40000,80000, 100000))+
+    # coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
+    labs(x="Distorted Longitude", 
+         y='Distorted Latitude', 
+         title="Cartogram of Racist and Xenophobic Incidents Recorded by the Police in Participating States in 2016",
+         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
+         caption="Social Data Science Lab, Cardiff University")+
+    hrbrthemes::theme_ipsum_rc()+
+    theme(plot.caption = element_text(size = 12))+
+    theme(legend.position = c(0.1,0.25))+
+    theme(legend.key.size = unit(0.4, "in"))
+
+carto_official_countrycodes
+ggsave("viz/Cartogram_002_official_countrycodes.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
