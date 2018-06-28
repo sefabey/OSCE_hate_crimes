@@ -66,6 +66,32 @@ world.f_civil %>%
     mutate(label_text_civil= paste(.$ISO3,.$hate_fig_civil,sep = ":"))  -># create labels by pasting country iso3 and hate figures 
     world.f2
 
+# manual geo adjust country labels
+
+world.f2 %>% 
+    mutate(longit= ifelse(ISO3=="USA", longit+7,longit),
+           longit=ifelse(ISO3=="CAN", longit-2,longit),
+           longit=ifelse(ISO3=="TUR", longit+1,longit),
+           longit=ifelse(ISO3=="SWE", longit-0.8,longit),
+           longit=ifelse(ISO3=="GBR", longit+1,longit),
+           latid=ifelse(ISO3=="USA", latid-2.5,latid),
+           latid=ifelse(ISO3=="MKD", latid+1,latid),
+           latid=ifelse(ISO3=="GRC", latid-1,latid),
+           latid=ifelse(ISO3=="ROU", latid-0.5,latid),
+           latid=ifelse(ISO3=="CAN", latid-0.5,latid),
+           latid=ifelse(ISO3=="HRV", latid-0.5,latid)
+           # latid=ifelse(ISO3=="ROU", latid,latid)
+           # ISO3=ifelse(ISO3=="BIH", NA,ISO3),#get rid of overlapping NA countries
+           # ISO3=ifelse(ISO3=="SVN", NA,ISO3),#get rid of overlapping NA countries
+           # label_text_official=ifelse(ISO3=="SVN", NA,label_text_official),
+           # label_text_official=ifelse(ISO3=="BIH", NA,label_text_official)
+    )->world.f2
+
+
+
+
+
+
 carto_civil <- ggplot(world.f2, aes(long, lat, group = group, fill = world.f2$hate_fig_civil %>% log2))+
     geom_polygon()+
     geom_text(data=world.f2, aes(x=longit, y=latid, label = label_text_civil),size=4)+ #cant ge this to work
@@ -91,7 +117,7 @@ carto_civil <- ggplot(world.f2, aes(long, lat, group = group, fill = world.f2$ha
 
 carto_civil
 
-# ggsave("viz/Cartogram_002_civilorg.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+ggsave("viz/Cartogram_002_civilorg.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
 
 # do the same for hate fig official
 
@@ -116,22 +142,40 @@ world.f_official <- fortify(world.carto_official, region = "Country.Code") %>%
 world.f_official %>% 
     group_by(ISO3) %>% 
     summarise(longit=mean (long),latid=mean(lat)) %>% 
+    ungroup() %>% 
     right_join(world.f_official) %>% 
-    mutate(label_text_official= paste(.$ISO3,.$hate_fig_official,sep = ":"))  ->
+    mutate(label_text_official= paste(.$ISO3,.$hate_fig_official,sep = ":")) %>% 
+    mutate(ISO3=as.character(ISO3))-> 
     world.f2_official
 
-
 # temp===========
-world.f2_official %>%
-    dplyr::select(ISO3,hate_fig_official)%>%
-    distinct %>% 
-    dplyr::arrange(hate_fig_official) %>% 
-    print(n=Inf)
+ world.f2_official %>% 
+    mutate(longit= ifelse(ISO3=="USA", longit+7,longit),
+           longit=ifelse(ISO3=="GBR", longit+2,longit),
+           longit=ifelse(ISO3=="TUR", longit+1,longit),
+           longit=ifelse(ISO3=="MKD", longit+0.5,longit),
+           longit=ifelse(ISO3=="SRB", longit-0.5,longit),
+           longit=ifelse(ISO3=="SVK", longit-0.5,longit),
+           longit=ifelse(ISO3=="ROU", longit+0.5,longit),
+           longit=ifelse(ISO3=="CZE", longit-1,longit),
+           longit=ifelse(ISO3=="HUN", longit+1,longit),
+           latid=ifelse(ISO3=="USA", latid-2.5,latid),
+           latid=ifelse(ISO3=="SWE", latid+1,latid),
+           latid=ifelse(ISO3=="UKR", latid+0.7,latid),
+           latid=ifelse(ISO3=="GRC", latid-0.5,latid),
+           latid=ifelse(ISO3=="SRB", latid-0.5,latid),
+           latid=ifelse(ISO3=="MKD", latid-0.1,latid),
+           latid=ifelse(ISO3=="HUN", latid-0.8,latid),
+           latid=ifelse(ISO3=="SVK", latid+0.5,latid),
+           latid=ifelse(ISO3=="ROU", latid-0.5,latid),
+           latid=ifelse(ISO3=="HRV", latid-1,latid),
+           latid=ifelse(ISO3=="POL", latid+0.3,latid),
+           ISO3=ifelse(ISO3=="BIH", NA,ISO3),#get rid of overlapping NA countries
+           ISO3=ifelse(ISO3=="SVN", NA,ISO3),#get rid of overlapping NA countries
+           label_text_official=ifelse(ISO3=="SVN", NA,label_text_official),
+           label_text_official=ifelse(ISO3=="BIH", NA,label_text_official)
+               )->world.f2_official
 
-world.f2_official %>% 
-    mutate( .$ISO3%in%'USA', longit=longit+5, latid=latid-5)
-
-world.f2_official$ISO3=='USA' 
 # temp=======
 
 carto_official <- ggplot(world.f2_official, aes(long, lat, group = group, fill = world.f2_official$hate_fig_official %>% log))+
@@ -158,7 +202,7 @@ carto_official <- ggplot(world.f2_official, aes(long, lat, group = group, fill =
 
 carto_official
 
-# ggsave("viz/Cartogram_002_official.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+ggsave("viz/Cartogram_002_official.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
 
 
 # These are done. Now off to different versions of these plots.
@@ -272,3 +316,4 @@ carto_official_countrycodes <- ggplot(world.f2_official, aes(long, lat, group = 
 
 carto_official_countrycodes
 ggsave("viz/Cartogram_002_official_countrycodes.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+
