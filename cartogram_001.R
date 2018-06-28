@@ -251,7 +251,7 @@ ggsave("viz/Cartogram_002_civil_countrycodes.png", width = 16*0.8, height = 9*0.
 carto_official_countrycodes <- ggplot(world.f2_official, aes(long, lat, group = group, fill = world.f2_official$hate_fig_official %>% log))+
     geom_polygon()+
     # geom_text(data=world.f2_official, aes(x=longit, y=latid, label = label_text_official),size=3.5)+ #cant ge this to work
-    geom_text(data=world.f2, aes(x=longit, y=latid, label = ISO3),size=4)+ 
+    geom_text(data=world.f2_official, aes(x=longit, y=latid, label = ISO3),size=4)+ 
     scale_fill_gradientn (name="Incident Counts",
                           colours=rev(brewer.pal(8,"Spectral")),
                           # na.value="white",
