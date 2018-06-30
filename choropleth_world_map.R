@@ -1,5 +1,5 @@
-# Choropleth world map
-# Choropleth world map
+# Choroplethh world map
+# Choroplethh world map
 # install.packages("rworldmap")
 # install.packages("countrycode")
 # install.packages("hrbrthemes")
@@ -28,7 +28,7 @@ plot1 <- ggplot()+
     coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Longitude", 
          y='Latitude', 
-         title="Choropleth of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
+         title="Choroplethh of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption="Social Data Science Lab, Cardiff University")+
     hrbrthemes::theme_ipsum_rc()+
@@ -49,7 +49,7 @@ plot2 <- ggplot()+
     coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Longitude", 
          y='Latitude', 
-         title="Choropleth of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
+         title="Choroplethh of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption="Social Data Science Lab, Cardiff University")+
     hrbrthemes::theme_ipsum_rc()+
@@ -76,7 +76,7 @@ plot3 <- ggplot()+
     coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Longitude", 
          y='Latitude', 
-         title="Choropleth of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
+         title="Choroplethh of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption="Social Data Science Lab, Cardiff University")+
     hrbrthemes::theme_ipsum_rc()+
@@ -111,7 +111,7 @@ plot4 <- ggplot()+
     coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Longitude", 
          y='Latitude', 
-         title="Choropleth of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
+         title="Choroplethh of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption="Social Data Science Lab, Cardiff University")+
     hrbrthemes::theme_ipsum_rc()+
@@ -141,7 +141,7 @@ plot5 <- ggplot()+
     coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Longitude", 
          y='Latitude', 
-         title="Choropleth of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
+         title="Choroplethh of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption="Social Data Science Lab, Cardiff University")+
     hrbrthemes::theme_ipsum_rc()+
@@ -174,7 +174,7 @@ plot6 <- ggplot()+
     coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Longitude", 
          y='Latitude', 
-         title="Choropleth of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
+         title="Choroplethh of Racist and Xenophobic Incidents Reported by International and Civil Society Organisations in 2016",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption="Social Data Science Lab, Cardiff University")+
     hrbrthemes::theme_ipsum_rc()+
@@ -184,7 +184,7 @@ plot6 <- ggplot()+
 
 plot6
 
-ggsave("viz/Choroplet_002_civilorg.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+ggsave("viz/Choropleth_002_civilorg.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
 # much better! as they say, 6th time is the charm!
 
 
@@ -203,7 +203,7 @@ plot7 <- ggplot()+
     coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Longitude", 
          y='Latitude', 
-         title="Choropleth of Racist and Xenophobic Incidents Recorded by the Police in Participating States in 2016",
+         title="Choroplethh of Racist and Xenophobic Incidents Recorded by the Police in Participating States in 2016",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption="Social Data Science Lab, Cardiff University")+
     hrbrthemes::theme_ipsum_rc()+
@@ -212,5 +212,5 @@ plot7 <- ggplot()+
     theme(legend.key.size = unit(0.4, "in"))
 plot7
 
-ggsave("viz/Choroplet_002_official.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+ggsave("viz/Choropleth_002_official.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
 

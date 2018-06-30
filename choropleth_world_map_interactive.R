@@ -19,8 +19,8 @@ l <- list(color = toRGB("black"), width = 0.3)
 
 # specify map projection/options
 g <- list(
-    showframe = FALSE,
-    showcoastlines = FALSE,
+    showframe = TRUE,
+    showcoastlines = TRUE,
     projection = list(type = 'Gnomic')
 )
 g <- NULL
@@ -40,13 +40,18 @@ p <- plot_geo(df) %>%
     colorbar(title = 'Incident Counts',
              tickmode="array",#set this to array to edit coloursclae vlaues manually
              tickvals= c(0,1,2,3,4,5,6,7,8,9,10,11), #set log scales for further maual editing
-             ticktext= c(0,2,5, 10, 20, 30, 50, 100, 250, 500, 1000, 2000) #replace log scales with these values while displaying
+             ticktext= c(0,2,5, 10, 20, 30, 50, 100, 250, 500, 1000, 2000), #replace log scales with these values while displaying
+             len=0.5,
+             y = 0.6,
+             x=1
     ) %>% 
     layout(
-        title = '2016 Global Racist and Xenophobic Incidents Reported by International and Civil Society Organisations<br>Source:<a href="http://hatecrime.osce.org/what-hate-crime/racism-and-xenophobia">Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)</a>',
-        geo = g
+        title = 'Map of Racist and Xenophobic Incidents\nReported by International and Civil Society Organisations in 2016<br>Source:<a href="http://hatecrime.osce.org/what-hate-crime/racism-and-xenophobia">Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)</a>',        geo = g
     )
 p
 
 # need to add other countrieswhich might be NA #done
 # colours log scale is loking good but manully edit keep the numbers ## done
+
+htmlwidgets::saveWidget(as_widget(p), "/home/rstudio/OSCE_hate_crimes/viz/choropleth_interactive.html")
+htmlwidgets::saveWidget(as_widget(p), "/home/rstudio/OSCE_hate_crimes/viz/choropleth_interactive_sc.html",selfcontained = T)
