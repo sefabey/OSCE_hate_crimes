@@ -213,3 +213,4 @@ plot7 <- ggplot()+
 plot7
 
 ggsave("viz/Choroplet_002_official.png", width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+
