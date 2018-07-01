@@ -1,0 +1,26 @@
+# -*- shell-script -*-
+# Copyright 1999-2018 ImageMagick Studio LLC
+# Definitions of optional features and configuration values for this build.
+# Intended for use by test scripts.
+MAGICK_FEATURES='DPC HDRI Cipher OpenMP'
+top_srcdir='/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3'
+top_builddir='/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3'
+
+set -a
+COMPARE="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/utilities/magick compare"
+COMPOSITE="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/utilities/magick composite"
+CONJURE="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/utilities/magick conjure"
+CONVERT="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/utilities/magick convert"
+DISPLAY="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/utilities/magick display"
+IDENTIFY="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/utilities/magick identify"
+MAGICK="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/utilities/magick"
+MONTAGE="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/utilities/magick montage"
+VALIDATE="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/tests/validate"
+DRAWTEST="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/tests/drawtest"
+WANDTEST="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/tests/wandtest"
+LD_LIBRARY_PATH="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/MagickCore/.libs:/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/MagickWand/.libs:${LD_LIBRARY_PATH}"
+MAGICK_CODER_MODULE_PATH="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/coders"
+MAGICK_CONFIGURE_PATH="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/config:/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/config"
+MAGICK_FILTER_MODULE_PATH="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/filters"
+PATH="/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/utilities:/home/rstudio/OSCE_hate_crimes/ImageMagick-7.0.8-3/tests:${PATH}"
+set +a
