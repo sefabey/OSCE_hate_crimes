@@ -192,7 +192,7 @@ carto_official <- ggplot(world.f2_official, aes(long, lat, group = group, fill =
     # coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Distorted Longitude", 
          y='Distorted Latitude', 
-         title="Cartogram of Racist and Xenophobic Incidents Recorded by the Police in Participating States in 2016",
+         title="Cartogram of Hate Crimes Recorded by the Police in Participating States in 2016",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption="Social Data Science Lab, Cardiff University")+
     hrbrthemes::theme_ipsum_rc()+
@@ -250,7 +250,7 @@ carto_official_wo_labels <- ggplot(world.f2_official, aes(long, lat, group = gro
     # coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Distorted Longitude", 
          y='Distorted Latitude', 
-         title="Cartogram of Racist and Xenophobic Incidents Recorded by the Police in Participating States in 2016",
+         title="Cartogram of Hate Crimes Recorded by the Police in Participating States in 2016",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption="Social Data Science Lab, Cardiff University")+
     hrbrthemes::theme_ipsum_rc()+
@@ -306,7 +306,7 @@ carto_official_countrycodes <- ggplot(world.f2_official, aes(long, lat, group = 
     # coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Distorted Longitude", 
          y='Distorted Latitude', 
-         title="Cartogram of Racist and Xenophobic Incidents Recorded by the Police in Participating States in 2016",
+         title="Cartogram of Hate Crimes Recorded by the Police in Participating States in 2016",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption="Social Data Science Lab, Cardiff University")+
     hrbrthemes::theme_ipsum_rc()+
