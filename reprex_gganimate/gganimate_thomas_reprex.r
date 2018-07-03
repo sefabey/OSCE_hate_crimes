@@ -1,4 +1,8 @@
 # devtools::install_github('thomasp85/gganimate')
+# devtools::install_github('thomasp85/tweenr', force=T)
+# devtools::install_github('thomasp85/transformr', force=T)
+# devtools::install_github("tidyverse/ggplot2", force=T)
+
 library(gganimate) # thomasp85/gganimate 
 library(cartogram)
 # devtools::install_github('jbaileyh/geogrid')
@@ -7,6 +11,7 @@ library(rnaturalearth)
 library(sf)
 # install.packages("scico")
 library(scico)
+
 
 us <- ne_states('united states of america', returnclass = 'sf')
 us <- us[!us$woe_name %in% c('Alaska', 'Hawaii'), ]
