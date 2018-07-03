@@ -77,7 +77,7 @@ p2 <- plot_geo(df) %>%
              x=1
     ) %>% 
     layout(
-        title = 'Map of Racist and Xenophobic Incidents\nRecorded by the Police in Participating States in 2016<br>Source:<a href="http://hatecrime.osce.org/what-hate-crime/racism-and-xenophobia">Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)</a>',        geo = g
+        title = 'Hate Crimes Recorded by the Police in 2016<br>Source:<a href="http://hatecrime.osce.org/what-hate-crime/racism-and-xenophobia">Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)</a>',        geo = g
     )
 p2
 
