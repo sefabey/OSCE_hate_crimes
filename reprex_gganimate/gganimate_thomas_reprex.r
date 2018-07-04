@@ -57,10 +57,5 @@ var <-  ggplot(us_all) +
 
 var
 
-animate(var,nframes = 100, fps = 10,
-        renderer = file_renderer(dir = "reprex_gganimate/file_renderer/", prefix = "gganim_plot", overwrite = FALSE))
-
-animate(var, nframes = 30, 'reprex_using_animate.gif',
+animate(var, nframes = 100, 'reprex_using_animate.gif',
         renderer = file_renderer(dir = "~", prefix = "gganim_plot", overwrite = FALSE))
-
-
