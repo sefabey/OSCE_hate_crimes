@@ -58,4 +58,4 @@ var <-  ggplot(us_all) +
 var
 
 animate(var, nframes = 100, 'reprex_using_animate.gif',
-        renderer = file_renderer(dir = "~", prefix = "gganim_plot", overwrite = FALSE))
+        renderer = file_renderer(dir = "reprex_gganimate/filerenderer/", prefix = "gganim_plot", overwrite = FALSE))
