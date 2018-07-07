@@ -153,15 +153,15 @@ ggplot() + geom_polygon(data = data_tween %>% filter(.frame==45) %>% arrange(ord
 
 p_official <-  ggplot() + 
     geom_polygon(data = data_tween_official  %>% arrange(order) , 
-                 aes(fill = figures_official_records %>% log2, x = long, y = lat, group = group, frame=.frame) 
+                 aes(fill = figures_official_records %>% log, x = long, y = lat, group = group, frame=.frame) 
                  , size=1, alpha=1) +
     scale_fill_gradientn (name="Incident Counts",
                           colours=rev(RColorBrewer::brewer.pal(8,"Spectral")),
                           # na.value="white",
                           na.value = "grey90",
                           guide = "colourbar",
-                          breaks= rep(1:11),
-                          labels=c(2,5, 10, 20, 30, 50, 100, 250, 500, 1000, 2000))+
+                          breaks= rep(1:12),
+                          labels=c(5, 10, 20, 50, 100, 200, 1000, 5000, 10000, 40000,80000, 100000))+
     # coord_sf(datum = NA) +
     hrbrthemes::theme_ipsum_rc()+
     labs( title = "Hate Crimes Recorded by Police Forces in 2016",
