@@ -1,78 +1,75 @@
-
-library(tweenr)
-library(transformr)
 library(tidyverse)
 library(ggplot2)
 library(gganimate) # thomasp85/gganimate 
 library(cartogram)
-# devtools::install_github('jbaileyh/geogrid')
-library(geogrid) # Need github version jbaileyh/geogrid
+library(geogrid) 
 library(rnaturalearth)
 library(sf)
-# install.packages("scico")
 library(scico)
 library(getcartr)
 
-world_sp <- maptools::readShapePoly("TM_WORLD_BORDERS-0.3/TM_WORLD_BORDERS-0.3.shp") %>% na.omit()
-osce_data <- read_csv('osce_hate_incidents_2016_wide.csv')
+# data pre-processing
+# read in world shapefile and OSCE data, merge, filter
+world_sp <- maptools::readShapePoly("TM_WORLD_BORDERS-0.3/TM_WORLD_BORDERS-0.3.shp") %>% na.omit() #find shp here https://github.com/sefabey/OSCE_hate_crimes/blob/master/TM_WORLD_BORDERS-0.3/TM_WORLD_BORDERS-0.3.shp
+osce_data <- read_csv('https://raw.githubusercontent.com/sefabey/OSCE_hate_crimes/master/osce_hate_incidents_2016_wide.csv')
 world_sp@data <- world_sp@data %>% left_join(osce_data, by=c('ISO3'='iso3c'))
-world_sp2 <- world_sp[world_sp$POP2005>0,]
-world_sp3 <- world_sp2[!is.na(world_sp2$figures_civil_intern_orgs),]
+world_sp2 <- world_sp[world_sp$POP2005>0,] #filter countries with 0 population
+world_sp3 <- world_sp2[!is.na(world_sp2$figures_civil_intern_orgs),] #filter countries without any data
 
-world_sp2$figures_civil_intern_orgs
 world_sp2 %>% plot
 world_sp3 %>% plot
 
-a <- quick.carto(world_sp2, world_sp2$figures_civil_intern_orgs,blur = 0.5)
-b <- quick.carto(world_sp2, world_sp2$figures_official_records, blur = 0.5)
-a %>% plot()
-b %>% plot()
-a2 <- quick.carto(world_sp3, log10(world_sp3$figures_civil_intern_orgs),blur = 0.5)
-b2 <- quick.carto(world_sp3, log10(world_sp3$figures_official_records), blur = 0.5)
-a2 %>% plot()
-b2 %>% plot()
+# create cartograms for both dataset using two diffrent cartogram algorithms
+world_carto_civil <- quick.carto(world_sp3, world_sp3$figures_civil_intern_orgs,blur = 0.5)
+# world_carto_civil_2 <- cartogram::cartogram_cont(world_sp3,"figures_civil_intern_orgs", itermax=5)
+
+# visually check both states
+world_sp3 %>% plot() 
+world_carto_civil %>% plot()
+# world_carto_civil_2 %>% plot()
+
+# check whether these polygons are valid or not (https://gis.stackexchange.com/questions/163445/getting-topologyexception-input-geom-1-is-invalid-which-is-due-to-self-intersec)
+sum(gIsValid(world_sp3, byid=TRUE)==FALSE)
+sum(gIsValid(world_carto_civil, byid=TRUE)==FALSE)
+# sum(gIsValid(world_carto_civil_2, byid=TRUE)==FALSE)
+
+#apparently not, all polygons have self intersections 
+#hacking this following the stackoverflow advice above using gBuffer()
 
 
+world_sp3_tidy <- gBuffer(world_sp3, byid=TRUE, id=world_sp3$ISO3, width=0) %>%
+    broom::tidy(region="ISO3") %>% 
+    left_join(world_sp3@data, by=c('id'='ISO3'))
 
-us <- ne_states('united states of america', returnclass = 'sf')
-us <- us[!us$woe_name %in% c('Alaska', 'Hawaii'), ]
-us <- st_transform(us, '+proj=eqdc +lat_0=39 +lon_0=-96 +lat_1=33 +lat_2=45 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs')
-# Population data from https://www.census.gov/data/tables/2017/demo/popest/state-total.html
-pop <- read.csv('https://www2.census.gov/programs-surveys/popest/datasets/2010-2017/national/totals/nst-est2017-popchg2010_2017.csv',
-                header = TRUE, skip = 0, check.names = F) #my berst bet is this data
-us$pop <- pop[match(us$name, pop$NAME),'POPESTIMATE2017' ] # selected 2017 population as weights 
+world_carto_civil_tidy <-  gBuffer(world_carto_civil, byid=TRUE, id=world_carto_civil$ISO3, width=0) %>% 
+    broom::tidy(region="ISO3") %>% 
+    left_join(world_carto_civil@data, by=c('id'='ISO3'))
 
-us_ca <- cartogram_cont(us, 'pop')
-us_hex <- calculate_grid(shape = us, grid_type = "hexagonal", seed = 1)
-us_hex <- assign_polygons(us, us_hex)
-us_sq <- calculate_grid(shape = us, grid_type = "regular", seed = 13)
-us_sq <- assign_polygons(us, us_sq)
+# name states
+types <- c('Original','Cartogram Weigted by OSCE data')
+world_sp3_tidy$type <- types[1]
+world_carto_civil_tidy$type <- types[2]
 
-types <- c(
-  'Original',
-  'Cartogram Weigted by Population',
-  'Hexagonal Tiling',
-  'Square Tiling'
-)
-us$type <- types[1]
-us_ca$type <- types[2]
-us_hex$type <- types[3]
-us_sq$type <- types[4]
-us_all <- rbind(us, us_hex[, names(us)], us_ca[, names(us)], us_sq[, names(us)])
-us_all$type <- factor(us_all$type, levels = types)
+# row bind original and cartogram
+world_all <- rbind(world_sp3_tidy, world_carto_civil_tidy[, names(world_sp3_tidy)])
 
-var <-  ggplot(us_all) + 
-  geom_sf(aes(fill = pop, group = name)) + 
-  scale_fill_scico(palette = 'lapaz') + 
-  coord_sf(datum = NA) +
-  theme_void() + 
-  theme(legend.position = 'bottom', 
-        legend.text = element_text(angle = 30, hjust = 1)) + 
-  labs(title = 'Showing {closest_state}', 
-       fill = 'Population') +
-  transition_states(type, 2, 1)
-
+# create factors for both states
+world_all$type <- factor(world_all$type, levels = types)
+world_all %>% str()
+# animate
+var <- ggplot(world_all, aes(long, lat, group=id, fill = figures_civil_intern_orgs ))+
+    geom_polygon()+
+    scale_fill_scico(palette = 'roma')+
+    theme_void() + 
+    theme(legend.position = 'bottom', 
+          legend.text = element_text(angle = 30, hjust = 1)) + 
+    labs(title = 'Showing {closest_state}', 
+          fill = 'figures_civil_intern_orgs') +
+    transition_states(type, 2, 2, wrap = T)
 var
 
-animate(var, nframes = 100, 'reprex_using_animate.gif',
-        renderer = file_renderer(dir = "reprex_gganimate/filerenderer/", prefix = "gganim_plot", overwrite = FALSE))
+
+#getting Error: $ operator is invalid for atomic vectors
+
+animate(var, nframes = 100, '../local_folder/reprex_using_animate.gif',
+        renderer = file_renderer(dir = "../local_folder/reprex_gganimate/filerenderer/", prefix = "gganim_plot", overwrite = FALSE))
