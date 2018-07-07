@@ -1,7 +1,3 @@
-# devtools::install_github('thomasp85/gganimate', force=T)
-# devtools::install_github('thomasp85/tweenr', force=T)
-# devtools::install_github('thomasp85/transformr', force=T)
-# devtools::install_github("tidyverse/ggplot2", force=T)
 
 library(tweenr)
 library(transformr)
@@ -15,6 +11,27 @@ library(rnaturalearth)
 library(sf)
 # install.packages("scico")
 library(scico)
+library(getcartr)
+
+world_sp <- maptools::readShapePoly("TM_WORLD_BORDERS-0.3/TM_WORLD_BORDERS-0.3.shp") %>% na.omit()
+osce_data <- read_csv('osce_hate_incidents_2016_wide.csv')
+world_sp@data <- world_sp@data %>% left_join(osce_data, by=c('ISO3'='iso3c'))
+world_sp2 <- world_sp[world_sp$POP2005>0,]
+world_sp3 <- world_sp2[!is.na(world_sp2$figures_civil_intern_orgs),]
+
+world_sp2$figures_civil_intern_orgs
+world_sp2 %>% plot
+world_sp3 %>% plot
+
+a <- quick.carto(world_sp2, world_sp2$figures_civil_intern_orgs,blur = 0.5)
+b <- quick.carto(world_sp2, world_sp2$figures_official_records, blur = 0.5)
+a %>% plot()
+b %>% plot()
+a2 <- quick.carto(world_sp3, log10(world_sp3$figures_civil_intern_orgs),blur = 0.5)
+b2 <- quick.carto(world_sp3, log10(world_sp3$figures_official_records), blur = 0.5)
+a2 %>% plot()
+b2 %>% plot()
+
 
 
 us <- ne_states('united states of america', returnclass = 'sf')
@@ -32,10 +49,10 @@ us_sq <- calculate_grid(shape = us, grid_type = "regular", seed = 13)
 us_sq <- assign_polygons(us, us_sq)
 
 types <- c(
-    'Original',
-    'Cartogram Weigted by Population',
-    'Hexagonal Tiling',
-    'Square Tiling'
+  'Original',
+  'Cartogram Weigted by Population',
+  'Hexagonal Tiling',
+  'Square Tiling'
 )
 us$type <- types[1]
 us_ca$type <- types[2]
@@ -45,15 +62,15 @@ us_all <- rbind(us, us_hex[, names(us)], us_ca[, names(us)], us_sq[, names(us)])
 us_all$type <- factor(us_all$type, levels = types)
 
 var <-  ggplot(us_all) + 
-    geom_sf(aes(fill = pop, group = name)) + 
-    scale_fill_scico(palette = 'lapaz') + 
-    coord_sf(datum = NA) +
-    theme_void() + 
-    theme(legend.position = 'bottom', 
-          legend.text = element_text(angle = 30, hjust = 1)) + 
-    labs(title = 'Showing {closest_state}', 
-         fill = 'Population') +
-    transition_states(type, 2, 1)
+  geom_sf(aes(fill = pop, group = name)) + 
+  scale_fill_scico(palette = 'lapaz') + 
+  coord_sf(datum = NA) +
+  theme_void() + 
+  theme(legend.position = 'bottom', 
+        legend.text = element_text(angle = 30, hjust = 1)) + 
+  labs(title = 'Showing {closest_state}', 
+       fill = 'Population') +
+  transition_states(type, 2, 1)
 
 var
 
