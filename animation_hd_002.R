@@ -1,8 +1,15 @@
-# wip_002======
+# gif animation from choropleth to cartogram======
+
+# Careful, this code works with gganimate ver 0.1.1 i.e. the last version before thomasp85 took the package over.
+# I want to port this work to the never version of the package in the future. But time is of the essence at the moment.
+# So, for a while, this will have to do.
 
 library(tidyverse)
 library(ggplot2)
-library(gganimate) # thomasp85/gganimate 
+library(gganimate) # https://github.com/thomasp85/gganimate/archive/v0.1.1.tar.gz ## download and select package archive file in RStudio
+old_gganimate_url <- "https://github.com/thomasp85/gganimate/archive/v0.1.1.tar.gz"
+install.packages(old_gganimate_url, repos=NULL, type="source")
+
 library(cartogram)
 library(geogrid) 
 library(rnaturalearth)
