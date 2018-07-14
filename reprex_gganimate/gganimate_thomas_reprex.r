@@ -59,3 +59,7 @@ var
 
 animate(var, nframes = 100, 'reprex_using_animate.gif',
         renderer = file_renderer(dir = "reprex_gganimate/filerenderer/", prefix = "gganim_plot", overwrite = FALSE))
+
+
+
+image_write(last_animation(), path = 'reprex_gganimate/latest.gif' )
