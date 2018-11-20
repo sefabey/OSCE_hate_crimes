@@ -1,0 +1,41 @@
+country,iso2c,iso3c,year,official_records,other_sources
+Albania,AL,ALB,2017,1,1
+Armenia,AM,ARM,2017,14,15
+Austria,AT,AUT,2017,302,186
+Belgium,BE,BEL,2017,875,36
+Bosnia and Herzegovina,BA,BIH,2017,NA,147
+Bulgaria,BG,BGR,2017,28,22
+Canada,CA,CAN,2017,1409,216
+Croatia,HR,HRV,2017,25,26
+Czech Republic,CZ,CZE,2017,47,62
+Denmark,DK,DNK,2017,446,8
+Estonia,EE,EST,2017,15,1
+Finland,FI,FIN,2017,1497,10
+France,FR,FRA,2017,1505,175
+Georgia,GE,GEO,2017,86,39
+Germany,DE,DEU,2017,7913,1451
+Greece,GR,GRC,2017,128,105
+Hungary,HU,HUN,2017,233,47
+Ireland,IE,IRL,2017,NA,72
+Italy,IT,ITA,2017,1048,155
+Kyrgyzstan,KG,KGZ,2017,NA,7
+Latvia,LV,LVA,2017,11,2
+Lithuania,LT,LTU,2017,9,6
+Moldova,MD,MDA,2017,17,17
+Netherlands,NL,NLD,2017,3499,76
+Norway,NO,NOR,2017,549,10
+Poland,PL,POL,2017,886,135
+Romania,RO,ROU,2017,1,13
+Russian Federation,RU,RUS,2017,52,243
+Serbia,RS,SRB,2017,5,26
+Slovakia,SK,SVK,2017,34,5
+Slovenia,SI,SVN,2017,NA,11
+Spain,ES,ESP,2017,1272,268
+Sweden,SE,SWE,2017,4862,43
+Switzerland,CH,CHE,2017,179,41
+The former Yugoslav Republic of Macedonia,MK,MKD,2017,2,36
+Turkey,TR,TUR,2017,13,107
+Ukraine,UA,UKR,2017,163,212
+United Kingdom,GB,GBR,2017,95552,673
+United States of America,US,USA,2017,8437,995
+Uzbekistan,UZ,UZB,2017,NA,8
