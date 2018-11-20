@@ -54,7 +54,7 @@ choro_civil
 # matched.indices <- match(world@data[, "ISO3"], smaller.data[, "Country.Code"])
 # world@data <- data.frame(world@data, smaller.data[matched.indices, ])
 
-world_carto_civil <- cartogram (world, 'hate_fig_civil', itermax=7)
+world_carto_civil <- cartogram_cont (world, 'hate_fig_civil', itermax = 7)
 plot(world_carto_civil)
 
 
@@ -103,8 +103,9 @@ data$time[152870:305729] <- 2
 data$time[305730:nrow(data)] <- 3
 
 # Calculate the transition between these 2 objects?
-data_tween <- tween_elements(data, time='time', group='id', ease='ease', nframes = 60)
+data_tween <- tweenr::tween_elements(data, time='time', group='id', ease='ease', nframes = 60)
 
+data %>% colnames()
 # check a few frame
 ggplot() + geom_polygon(data = data_tween %>% filter(.frame==0) %>% arrange(order), aes(fill = hate_fig_civil, x = long, y = lat, group = group) , size=0, alpha=0.9)
 ggplot() + geom_polygon(data = data_tween %>% filter(.frame==5) %>% arrange(order), aes(fill = hate_fig_civil, x = long, y = lat, group = group) , size=0, alpha=0.9)
@@ -137,5 +138,6 @@ p= ggplot() +
 
 # Make the animation
 animation::ani.options(ani.width=1920, ani.height=1080, ani.res=300, interval=1/9)
+gganimate(p)
 gganimate(p, "viz/choro_to_carto_animation_hd.gif", title_frame = F)
 proc.time() - ptm

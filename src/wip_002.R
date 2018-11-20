@@ -23,8 +23,8 @@ world_sp3 %>% plot
 world_sp3@data -> world_data # all hail right assign (careful though), export world@data
 
 # create cartograms for both dataset using two diffrent cartogram algorithms
-world_carto_civil <- quick.carto(world_sp3, world_sp3$figures_civil_intern_orgs,blur = 0.5)
-# world_carto_civil_2 <- cartogram::cartogram_cont(world_sp3,"figures_civil_intern_orgs", itermax=5)
+# world_carto_civil <- quick.carto(world_sp3, world_sp3$figures_civil_intern_orgs,blur = 0.5)
+world_carto_civil <- cartogram::cartogram_cont(world_sp3,"figures_civil_intern_orgs", itermax=5)
 
 # visually check both states
 world_sp3 %>% plot() 
@@ -51,7 +51,11 @@ world_carto_civil_tidy <- world_carto_civil %>%
     broom::tidy(region="ISO3") %>% 
     left_join(world_carto_civil@data, by=c('id'='ISO3'))
 
-data_tween <- tweenr::tween_state(world_sp3_tidy, world_carto_civil_tidy, 'cubic-in-out', 60, id = 'group')
+data_tween <- world_sp3_tidy %>%
+    tweenr::tween_state( world_carto_civil_tidy, 'cubic-in-out', 60, id = 'group') %>%
+    tweenr::tween_state( world_sp3_tidy, 'cubic-in-out', 60, id = 'group')
+
+
 data_tween %>% colnames()
 ggplot() + geom_polygon(data = data_tween %>% filter(.frame==1) %>% arrange(order), aes(fill = figures_civil_intern_orgs, x = long, y = lat, group = group) , size=0, alpha=0.9)
 ggplot() + geom_polygon(data = data_tween %>% filter(.frame==5) %>% arrange(order), aes(fill = figures_civil_intern_orgs, x = long, y = lat, group = group) , size=0, alpha=0.9)
@@ -59,7 +63,7 @@ ggplot() + geom_polygon(data = data_tween %>% filter(.frame==30) %>% arrange(ord
 ggplot() + geom_polygon(data = data_tween %>% filter(.frame==45) %>% arrange(order), aes(fill = figures_civil_intern_orgs, x = long, y = lat, group = group) , size=0, alpha=0.9)
 
 
-p= ggplot() + 
+p <-  ggplot() + 
     geom_polygon(data = data_tween  %>% arrange(order) , 
                  aes(fill = figures_civil_intern_orgs %>% log2, x = long, y = lat, group = group, frame=.frame) 
                  , size=1, alpha=1) +
@@ -70,20 +74,33 @@ p= ggplot() +
                           guide = "colourbar",
                           breaks= rep(1:11),
                           labels=c(2,5, 10, 20, 30, 50, 100, 250, 500, 1000, 2000))+
+    # coord_sf(datum = NA) +
     hrbrthemes::theme_ipsum_rc()+
-    labs( title = "World Hateful and Xenophobic Incidents Reported in 2016", 
+    labs( title = "World Hateful and Xenophobic Incidents Reported in 2016",
           subtitle="Source: OSCE",
           caption="Social Data Science Lab, Cardiff University",
-          x="Longitude", 
+          x="Longitude",
           y='Latitude') +
     coord_map(xlim=c(-180,180), ylim = c(20, 150))+
-    theme(legend.position="right",legend.direction="vertical")+
-    theme(plot.caption = element_text( size=15))+
-    theme(legend.key.height = unit(3, "cm"))+
+    theme(text =element_text( size=100) )+
+    theme(title =element_text( size=100)  )
+    theme(legend.position = 'bottom', 
+          legend.text = element_text(angle = 30, hjust = 1))+
+    theme(plot.caption = element_text( size=100))+
+    theme(plot.title = element_text(size=150))+
+    theme(plot.subtitle = element_text(size=100))+
+    theme(axis.title.x =element_text(size=100,face="bold"),
+          axis.title.y =element_text(size=100,face="bold"),
+          axis.text.x = element_text(size=100),
+          axis.text.y = element_text(size=100))+
+    theme(legend.title=element_text(size=80))+ 
+    theme(legend.text=element_text(size=80))+
+    theme(legend.key.size = 100)+
+    theme(legend.key.height = 50)+
     NULL
 
-animation::ani.options(ani.width=1920, ani.height=1080, ani.res=300, interval=1/9)
-gganimate:: animate(p, "viz/choro_to_carto_animation_hd_temp.gif", title_frame = F)
+animation::ani.options(ani.width=1920, ani.height=1080, ani.res=300, interval=1/18)
+gganimate:: gganimate(p, "viz/choro_to_carto_animation_hd_temp.gif", title_frame = F)
 
 
 # name states
