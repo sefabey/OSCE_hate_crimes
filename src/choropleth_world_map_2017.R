@@ -222,7 +222,7 @@ plot7_a <- ggplot()+
     # theme(legend.position="bottom")+ 
     geom_map(data=osce_map_joined, map=map.world, 
              aes(map_id=region, x=long, y=lat, fill= osce_map_joined$official_records %>% log() ))+
-    geom_text(data=centroids_joined, aes(x=long, y=lat, label = official_records), size=4)+
+    geom_text(data=centroids_joined, aes(x=long, y=lat, label = official_records), size=3.5)+
     scale_fill_gradientn (name="Incident Counts",
                           colours=rev(brewer.pal(8,"Spectral")),
                           # na.value="white",
