@@ -132,7 +132,7 @@ world@data <- data.frame(world@data, smaller.data_2[matched.indices_2, ])
 ## Compute the cartogram transformation of each country using its population
 ## with the degree of Gaussian blur = 0.5 (otherwise, it may not work)
 world.carto_official <- quick.carto(world, world@data$hate_fig_official, blur = 0.7)
-plot(world.carto_official)
+# plot(world.carto_official)
 
 ## Convert the object into data frame
 world.f_official <- fortify(world.carto_official, region = "Country.Code") %>% 
@@ -152,24 +152,33 @@ world.f_official %>%
  world.f2_official %>% 
     mutate(longit= ifelse(ISO3=="USA", longit+7,longit),
            longit=ifelse(ISO3=="GBR", longit+2,longit),
-           longit=ifelse(ISO3=="TUR", longit+1,longit),
-           longit=ifelse(ISO3=="MKD", longit+0.5,longit),
+           longit=ifelse(ISO3=="ALB", longit+0.5,longit),
+           longit=ifelse(ISO3=="ARM", longit+0.5,longit),
+           longit=ifelse(ISO3=="TUR", longit+3,longit),
+           # longit=ifelse(ISO3=="MKD", longit+0.5,longit),
+           longit=ifelse(ISO3=="GRC", longit+2,longit),
            longit=ifelse(ISO3=="SRB", longit-0.5,longit),
            longit=ifelse(ISO3=="SVK", longit-0.5,longit),
            longit=ifelse(ISO3=="ROU", longit+0.5,longit),
+           longit=ifelse(ISO3=="BGR", longit-0.5,longit),
            longit=ifelse(ISO3=="CZE", longit-1,longit),
-           longit=ifelse(ISO3=="HUN", longit+1,longit),
+           longit=ifelse(ISO3=="HUN", longit-1,longit),
            latid=ifelse(ISO3=="USA", latid-2.5,latid),
            latid=ifelse(ISO3=="SWE", latid+1,latid),
            latid=ifelse(ISO3=="UKR", latid+0.7,latid),
-           latid=ifelse(ISO3=="GRC", latid-0.5,latid),
-           latid=ifelse(ISO3=="SRB", latid-0.5,latid),
-           latid=ifelse(ISO3=="MKD", latid-0.1,latid),
-           latid=ifelse(ISO3=="HUN", latid-0.8,latid),
+           # latid=ifelse(ISO3=="GRC", latid-0.5,latid),
+           # latid=ifelse(ISO3=="SRB", latid-0.5,latid),
+           latid=ifelse(ISO3=="MKD", latid-0.5,latid),
+           latid=ifelse(ISO3=="HUN", latid-1.1,latid),
+           latid=ifelse(ISO3=="ARM", latid-0.2,latid),
+           latid=ifelse(ISO3=="GEO", latid+0.2,latid),
            latid=ifelse(ISO3=="SVK", latid+0.5,latid),
-           latid=ifelse(ISO3=="ROU", latid-0.5,latid),
+           latid=ifelse(ISO3=="BGR", latid-0.2,latid),
+           latid=ifelse(ISO3=="TUR", latid+0.3,latid),
+           # latid=ifelse(ISO3=="ROU", latid-0.7,latid),
            latid=ifelse(ISO3=="HRV", latid-1,latid),
            latid=ifelse(ISO3=="POL", latid+0.3,latid),
+           latid=ifelse(ISO3=="ALB", latid+0.8,latid),
            ISO3=ifelse(ISO3=="BIH", NA,ISO3),#get rid of overlapping NA countries
            ISO3=ifelse(ISO3=="SVN", NA,ISO3),#get rid of overlapping NA countries
            label_text_official=ifelse(ISO3=="SVN", NA,label_text_official),
@@ -193,14 +202,14 @@ carto_official <- ggplot(world.f2_official, aes(long, lat, group = group, fill =
     labs(x="Distorted Longitude", 
          y='Distorted Latitude', 
          title="Hate Crimes Recorded by the Police in 2017",
-         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
+         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)\n\n* For Canada, Estonia, Latvia, Spain, Sweden and the Republic of Macedonia 2016 Figures Were Used",
          caption="Social Data Science Lab, Cardiff University")+
     hrbrthemes::theme_ipsum_rc()+
-    theme(plot.caption = element_text(size = 12))+
+    theme(plot.caption = element_text(size = 14))+
     theme(legend.position = c(0.1,0.25))+
     theme(legend.key.size = unit(0.4, "in"))
 
-carto_official
+# carto_official
 
 ggsave(filename = "viz/2017/Cartogram_002_official_2017.png",plot = carto_official,
        width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
