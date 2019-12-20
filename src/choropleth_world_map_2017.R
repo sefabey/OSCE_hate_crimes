@@ -4,7 +4,7 @@
 # install.packages("countrycode")
 # install.packages("hrbrthemes")
 # install.packages("CoordinateCleaner")
-
+ndjson::validate()    
 library(rworldmap)
 library(ggplot2)
 library(RColorBrewer)
