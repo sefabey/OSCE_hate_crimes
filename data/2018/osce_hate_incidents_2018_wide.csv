@@ -1,0 +1,58 @@
+country,iso2c,iso3c,year,police_records,other_sources
+Albania,AL,ALB,2018,NA,1
+Andorra,AD,AND,2018,0,NA
+Armenia,AM,ARM,2018,0,26
+Austria,AT,AUT,2018,307,121
+Azerbaijan,AZ,AZE,2018,NA,1
+Belarus,BY,BLR,2018,NA,2
+Belgium,BE,BEL,2018,1446,43
+Bosnia and Herzegovina,BA,BIH,2018,NA,71
+Bulgaria,BG,BGR,2018,46,13
+Canada,CA,CAN,2018,1798,112
+Croatia,HR,HRV,2018,33,18
+Cyprus,CY,CYP,2018,NA,NA
+Czech Republic,CZ,CZE,2018,46,62
+Denmark,DK,DNK,2018,449,12
+Estonia,EE,EST,2018,NA,2
+Finland,FI,FIN,2018,880,3
+France,FR,FRA,2018,1838,201
+Georgia,GE,GEO,2018,344,66
+Germany,DE,DEU,2018,8113,1996
+Greece,GR,GRC,2018,164,130
+Holy See,VA,VAT,2018,0,NA
+Hungary,HU,HUN,2018,194,25
+Iceland,IS,ISL,2018,7,1
+Ireland,IE,IRL,2018,368,1
+Italy,IT,ITA,2018,1111,301
+Kazakhstan,KZ,KAZ,2018,14,8
+Kyrgyzstan,KG,KGZ,2018,NA,37
+Latvia,LV,LVA,2018,NA,NA
+Liechtenstein,LI,LIE,2018,2,NA
+Lithuania,LT,LTU,2018,7,7
+Luxembourg,LU,LUX,2018,NA,NA
+Malta,MT,MLT,2018,NA,NA
+Moldova,MD,MDA,2018,10,11
+Monaco,MC,MCO,2018,NA,NA
+Mongolia,MN,MNG,2018,0,NA
+Montenegro,ME,MNE,2018,NA,3
+Netherlands,NL,NLD,2018,3299,54
+North Macedonia,MK,MKD,2018,33,73
+Norway,NO,NOR,2018,624,1
+Poland,PL,POL,2018,1117,106
+Portugal,PT,PRT,2018,23,1
+Romania,RO,ROU,2018,2,12
+Russian Federation,RU,RUS,2018,576,139
+San Marino,SM,SMR,2018,NA,NA
+Serbia,RS,SRB,2018,61,28
+Slovakia,SK,SVK,2018,266,8
+Slovenia,SI,SVN,2018,NA,5
+Spain,ES,ESP,2018,1598,240
+Sweden,SE,SWE,2018,5858,27
+Switzerland,CH,CHE,2018,159,33
+Tajikistan,TJ,TJK,2018,NA,13
+Turkey,TR,TUR,2018,NA,41
+Turkmenistan,TM,TKM,2018,NA,8
+Ukraine,UA,UKR,2018,178,237
+United Kingdom,GB,GBR,2018,111076,565
+United States of America,US,USA,2018,8496,835
+Uzbekistan,UZ,UZB,2018,NA,1
