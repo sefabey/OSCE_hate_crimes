@@ -37,7 +37,7 @@ library(tidyverse)
 world <- readShapePoly('TM_WORLD_BORDERS-0.3/TM_WORLD_BORDERS-0.3.shp')
 
 # Using hate incident stats by OSCE's ODIHR
-osce_data <- read_csv(file = 'osce_hate_incidents_2016_wide.csv')
+osce_data <- read_csv(file = 'data/2016/osce_hate_incidents_2016_wide.csv')
 
 
 # plot1=======
