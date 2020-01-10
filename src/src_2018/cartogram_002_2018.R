@@ -91,7 +91,7 @@ carto_other_sources <- ggplot(cartogram_data_1, aes(long, lat, group = group, fi
          y='Distorted Latitude', 
          title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
-         caption="HateLab, Cardiff University")+
+         caption="HateLab, 2020, by @SefaOzalp")+
     hrbrthemes::theme_ipsum_rc()+
     theme(plot.caption = element_text(size = 12))+
     theme(legend.position = c(0.1,0.25))+
@@ -175,9 +175,9 @@ carto_police_records <- cartogram_data_police_1 %>%
     # coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Distorted Longitude", 
          y='Distorted Latitude', 
-         title="Cartogram of Hate Crimes Recorded by the Police in Participating States in 2018",
+         title="Hate Crimes Recorded by the Police in Participating States in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
-         caption="HateLab, Cardiff University")+
+         caption="Hate Lab, 2020, by @SefaOzalp")+
     hrbrthemes::theme_ipsum_rc()+
     theme(plot.caption = element_text(size = 12))+
     theme(legend.position = c(0.1,0.25))+

@@ -3,7 +3,13 @@
 # install.packages("rworldmap")
 # install.packages("countrycode")
 # install.packages("hrbrthemes")
+# install.packages("units") # requires sudo apt-get update -y and sudo apt-get install -y libudunits2-dev in the system
+# install.packages("sf") #requires sudo apt-get install libgdal-dev
+# install.packages("rnaturalearth")
 # install.packages("CoordinateCleaner")
+# install.packages("viridis")
+# install.packages("mapproj")
+
 library(rworldmap)
 library(ggplot2)
 library(RColorBrewer)
@@ -34,7 +40,7 @@ plot1 <- ggplot()+
          y='Latitude', 
          title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
-         caption = "Hate Lab, 2019, by @SefaOzalp")+
+         caption = "HateLab, 2019, by @SefaOzalp")+
     hrbrthemes::theme_ipsum_rc()+
     theme(plot.caption = element_text(size=10))+
     theme(legend.position = c(0.1,0.25))+
@@ -65,7 +71,7 @@ plot2 <- ggplot()+
          y='Latitude', 
          title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
-         caption = "Hate Lab, 2019, by @SefaOzalp")+
+         caption = "HateLab, 2019, by @SefaOzalp")+
     hrbrthemes::theme_ipsum_rc()+
     theme(plot.caption = element_text(size = 10))+
     theme(legend.position = c(0.1,0.25))# for positioning the legend inside the plot
@@ -106,7 +112,7 @@ plot3 <- ggplot()+
          y='Latitude', 
          title="Racist and Xenophobic Incidents Reported by Other Source in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
-         caption = "Hate Lab, 2019, by @SefaOzalp")+
+         caption = "HateLab, 2019, by @SefaOzalp")+
     hrbrthemes::theme_ipsum_rc()+
     theme(plot.caption = element_text(size = 10))+
     theme(legend.position = c(0.1,0.25))# for positioning the legend inside the plot
@@ -140,7 +146,7 @@ plot4 <- ggplot()+
          y='Latitude', 
          title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
-         caption = "Hate Lab, 2019, by @SefaOzalp")+
+         caption = "HateLab, 2019, by @SefaOzalp")+
     hrbrthemes::theme_ipsum_rc()+
     theme(plot.caption = element_text(size = 10))+
     theme(legend.position = c(0.1,0.25))# for positioning the legend inside the plot
@@ -169,7 +175,7 @@ plot5 <- ggplot()+
          y='Latitude', 
          title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
-         caption = "Hate Lab, 2019, by @SefaOzalp")+
+         caption = "HateLab, 2019, by @SefaOzalp")+
     hrbrthemes::theme_ipsum_rc()+
     theme(plot.caption = element_text(size = 10))+
     theme(legend.position = c(0.1,0.25))# for positioning the legend inside the plot
@@ -200,7 +206,7 @@ plot6 <- ggplot()+
          y='Latitude', 
          title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
-         caption = "Hate Lab, 2019, by @SefaOzalp")+
+         caption = "HateLab, 2019, by @SefaOzalp")+
     hrbrthemes::theme_ipsum_rc()+
     theme(plot.caption = element_text(size = 10))+
     theme(legend.position = c(0.1,0.25))+# for positioning the legend inside the plot
@@ -232,7 +238,7 @@ geom_map(data=osce_map_joined, map=map.world,
          y='Latitude', 
          title="Hate Crimes Recorded by the Police in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
-         caption = "Hate Lab, 2019, by @SefaOzalp")+
+         caption = "HateLab, 2019, by @SefaOzalp")+
     hrbrthemes::theme_ipsum_rc()+
     theme(plot.caption = element_text(size = 10))+
     theme(legend.position = c(0.1,0.25))+# for positioning the legend inside the plot
@@ -261,7 +267,7 @@ plot7_greyscale <- ggplot()+
          y='Latitude', 
          title="Hate Crimes Recorded by the Police in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)",
-         caption = "Hate Lab, 2019, by @SefaOzalp")+
+         caption = "HateLab, 2019, by @SefaOzalp")+
     hrbrthemes::theme_ipsum_rc()+
     theme(plot.caption = element_text(size = 14))+
     theme(legend.position = c(0.1,0.25))+# for positioning the legend inside the plot
