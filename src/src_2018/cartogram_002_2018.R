@@ -56,16 +56,36 @@ cartogram_data %>%
 # manual adjustments to centroids after visual inspection (expect to do this iteratively)
 cartogram_data_1 <- cartogram_data_1 %>% 
     mutate(longit= ifelse(ISO3=="USA", longit+7,longit),
-           longit=ifelse(ISO3=="CAN", longit-2,longit),
+           longit=ifelse(ISO3=="CAN", longit-5,longit),
+           longit=ifelse(ISO3=="HUN", longit-0.5,longit),
            longit=ifelse(ISO3=="TUR", longit+1,longit),
-           longit=ifelse(ISO3=="SWE", longit-0.8,longit),
+           longit=ifelse(ISO3=="DEU", longit-1,longit),
+           longit=ifelse(ISO3=="AUT", longit+1.5,longit),
+           longit=ifelse(ISO3=="SWE", longit-1,longit),
+           longit=ifelse(ISO3=="NOR", longit-3.8,longit),
            longit=ifelse(ISO3=="GBR", longit+1,longit),
+           longit=ifelse(ISO3=="ARM", longit+1,longit),
+           longit=ifelse(ISO3=="PRT", longit+1,longit),
+           longit=ifelse(ISO3=="ESP", longit+1.3,longit),
+           longit=ifelse(ISO3=="ITA", longit+0.5,longit),
+           longit=ifelse(ISO3=="AZE", longit+1,longit),
            latid=ifelse(ISO3=="USA", latid-2.5,latid),
-           latid=ifelse(ISO3=="MKD", latid+1,latid),
+           latid=ifelse(ISO3=="MKD", latid+1.3,latid),
            latid=ifelse(ISO3=="GRC", latid-1,latid),
            latid=ifelse(ISO3=="ROU", latid-0.5,latid),
            latid=ifelse(ISO3=="CAN", latid-0.5,latid),
-           latid=ifelse(ISO3=="HRV", latid-0.5,latid)
+           latid=ifelse(ISO3=="HRV", latid-0.5,latid),
+           latid=ifelse(ISO3=="ARM", latid-0.5,latid),
+           latid=ifelse(ISO3=="AZE", latid-0.1,latid),
+           latid=ifelse(ISO3=="SRB", latid+0.1,latid),
+           latid=ifelse(ISO3=="NOR", latid-1,latid),
+           latid=ifelse(ISO3=="DEU", latid-2,latid),
+           latid=ifelse(ISO3=="MNE", latid-0.2,latid),
+           latid=ifelse(ISO3=="UZB", latid-0.2,latid),
+           latid=ifelse(ISO3=="CAN", latid-1,latid),
+           latid=ifelse(ISO3=="BGR", latid+0.8,latid),
+           latid=ifelse(ISO3=="GBR", latid-1,latid),
+           latid=ifelse(ISO3=="RUS", latid-1,latid)
            # latid=ifelse(ISO3=="ROU", latid,latid)
            # ISO3=ifelse(ISO3=="BIH", NA,ISO3),#get rid of overlapping NA countries
            # ISO3=ifelse(ISO3=="SVN", NA,ISO3),#get rid of overlapping NA countries
@@ -92,8 +112,9 @@ carto_other_sources <- ggplot(cartogram_data_1, aes(long, lat, group = group, fi
          title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption="HateLab, 2020, by @SefaOzalp")+
-    hrbrthemes::theme_ipsum_rc()+
-    theme(plot.caption = element_text(size = 12))+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size = 14))+
+    theme(plot.subtitle = element_text(size = 14))+
     theme(legend.position = c(0.1,0.25))+
     theme(legend.key.size = unit(0.4, "in"))
 
@@ -102,6 +123,36 @@ carto_other_sources
 ggsave(plot=carto_other_sources, filename = "viz/2018/cartogram_002_other_org_labels.pdf",
        device = cairo_pdf,
        width = 16*0.8, height = 9*0.8, units = "in" , dpi = 500, scale = 1.5)
+
+
+
+
+carto_other_sources_greyscale <- cartogram_data_1 %>% 
+    ggplot(aes(long, lat, group = group, fill =value %>% log))+
+    geom_polygon()+
+    # geom_text(data=cartogram_data_police_1, aes(x=longit, y=latid, label = label_text_police),size=3.5)+ #cant ge this to work
+    scale_fill_gradient (low ="gray80" , high = "black",
+                         na.value = "white",
+                         name="Incident Counts\n(Log Scale)",
+                         guide = "colourbar")+
+    # coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
+    labs(x="Distorted Longitude", 
+         y='Distorted Latitude', 
+         title="Hate Crimes Recorded by the Police in Participating States in 2018",
+         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
+         caption="HateLab, 2020, by @SefaOzalp")+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size = 14))+
+    theme(plot.subtitle = element_text(size = 14))+
+    theme(legend.position = c(0.1,0.25))+
+    theme(legend.key.size = unit(0.4, "in"))
+
+carto_other_sources_greyscale
+
+ggsave(plot=carto_other_sources_greyscale, filename = "viz/2018/cartogram_002_other_orgs_greyscale_log.pdf",
+       device = cairo_pdf,
+       width = 16*0.8, height = 9*0.8, units = "in" , dpi = 500, scale = 1.5)
+
 
 # OSCE police recorded data--------
 
@@ -125,6 +176,7 @@ cartogram_data_police %>%
     group_by(ISO3) %>% 
     summarise(longit=mean (long),latid=mean(lat)) %>% # calculate middle point (centroid) of the distorted country polygons
     right_join(cartogram_data_police) %>% 
+    filter(value!=0) %>% 
     mutate(label_text_police= paste(.$ISO3,.$value,sep = ":"))  -> # create labels by pasting country iso3 and hate figures 
     cartogram_data_police_1
 
@@ -132,25 +184,37 @@ cartogram_data_police %>%
 # manual adjustments to centroids after visual inspection (expect to do this iteratively)
 cartogram_data_police_1 <- cartogram_data_police_1 %>% 
     mutate(longit= ifelse(ISO3=="USA", longit+7,longit),
-           longit=ifelse(ISO3=="GBR", longit+2,longit),
+           longit=ifelse(ISO3=="GBR", longit+3,longit),
            longit=ifelse(ISO3=="TUR", longit+1,longit),
+           longit=ifelse(ISO3=="DEU", longit-0.5,longit),
            longit=ifelse(ISO3=="MKD", longit+0.5,longit),
+           longit=ifelse(ISO3=="PRT", longit+2,longit),
+           longit=ifelse(ISO3=="CAN", longit-3,longit),
            longit=ifelse(ISO3=="SRB", longit-0.5,longit),
+           longit=ifelse(ISO3=="NOR", longit-2.5,longit),
            longit=ifelse(ISO3=="SVK", longit-0.5,longit),
            longit=ifelse(ISO3=="ROU", longit+0.5,longit),
+           longit=ifelse(ISO3=="DEU", longit-0.5,longit),
            longit=ifelse(ISO3=="CZE", longit-1,longit),
            longit=ifelse(ISO3=="HUN", longit+1,longit),
+           latid=ifelse(ISO3=="GBR", latid-4,latid),
+           latid=ifelse(ISO3=="CAN", latid-2,latid),
            latid=ifelse(ISO3=="USA", latid-2.5,latid),
            latid=ifelse(ISO3=="SWE", latid+1,latid),
+           latid=ifelse(ISO3=="DEU", latid-2,latid),
+           latid=ifelse(ISO3=="BGR", latid+0.5,latid),
+           latid=ifelse(ISO3=="RUS", latid-0.5,latid),
            latid=ifelse(ISO3=="UKR", latid+0.7,latid),
+           latid=ifelse(ISO3=="PRT", latid-1,latid),
            latid=ifelse(ISO3=="GRC", latid-0.5,latid),
            latid=ifelse(ISO3=="SRB", latid-0.5,latid),
+           latid=ifelse(ISO3=="NOR", latid-1,latid),
            latid=ifelse(ISO3=="MKD", latid-0.1,latid),
            latid=ifelse(ISO3=="HUN", latid-0.8,latid),
            latid=ifelse(ISO3=="SVK", latid+0.5,latid),
-           latid=ifelse(ISO3=="ROU", latid-0.5,latid),
-           latid=ifelse(ISO3=="HRV", latid-1,latid),
-           latid=ifelse(ISO3=="POL", latid+0.3,latid),
+           latid=ifelse(ISO3=="ROU", latid+0.5,latid),
+           latid=ifelse(ISO3=="HRV", latid-0.5,latid),
+           latid=ifelse(ISO3=="POL", latid+0.3,latid)
            # ISO3=ifelse(ISO3=="BIH", NA,ISO3),#get rid of overlapping NA countries
            # ISO3=ifelse(ISO3=="SVN", NA,ISO3),#get rid of overlapping NA countries
            # label_text_official=ifelse(ISO3=="SVN", NA,label_text_official),
@@ -177,14 +241,43 @@ carto_police_records <- cartogram_data_police_1 %>%
          y='Distorted Latitude', 
          title="Hate Crimes Recorded by the Police in Participating States in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
-         caption="Hate Lab, 2020, by @SefaOzalp")+
-    hrbrthemes::theme_ipsum_rc()+
-    theme(plot.caption = element_text(size = 12))+
+         caption="HateLab, 2020, by @SefaOzalp")+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size = 14))+
+    theme(plot.subtitle = element_text(size = 14))+
     theme(legend.position = c(0.1,0.25))+
     theme(legend.key.size = unit(0.4, "in"))
 
 carto_police_records
 
 ggsave(plot=carto_police_records, filename = "viz/2018/cartogram_002_police_labels.pdf",
+       device = cairo_pdf,
+       width = 16*0.8, height = 9*0.8, units = "in" , dpi = 500, scale = 1.5)
+
+
+
+carto_police_records_greyscale <- cartogram_data_police_1 %>% 
+    ggplot(aes(long, lat, group = group, fill =value %>% log))+
+    geom_polygon()+
+    # geom_text(data=cartogram_data_police_1, aes(x=longit, y=latid, label = label_text_police),size=3.5)+ #cant ge this to work
+    scale_fill_gradient (low ="gray80" , high = "black",
+                         na.value = "white",
+                         name="Incident Counts\n(Log Scale)",
+                         guide = "colourbar")+
+    # coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
+    labs(x="Distorted Longitude", 
+         y='Distorted Latitude', 
+         title="Hate Crimes Recorded by the Police in Participating States in 2018",
+         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
+         caption="HateLab, 2020, by @SefaOzalp")+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size = 14))+
+    theme(plot.subtitle = element_text(size = 14))+
+    theme(legend.position = c(0.1,0.25))+
+    theme(legend.key.size = unit(0.4, "in"))
+
+carto_police_records_greyscale
+
+ggsave(plot=carto_police_records_greyscale, filename = "viz/2018/cartogram_002_police_labels_greyscale_log.pdf",
        device = cairo_pdf,
        width = 16*0.8, height = 9*0.8, units = "in" , dpi = 500, scale = 1.5)

@@ -41,8 +41,8 @@ plot1 <- ggplot()+
          title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption = "HateLab, 2019, by @SefaOzalp")+
-    hrbrthemes::theme_ipsum_rc()+
-    theme(plot.caption = element_text(size=10))+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size=12))+
     theme(legend.position = c(0.1,0.25))+
     NULL
 plot1
@@ -52,7 +52,7 @@ plot1
 ggsave(filename = "viz/2018/Choropleth_002_other_org_2018_greyscale.pdf",
        plot = plot1,
        width = 16*0.8, height = 9*0.8, units = "in" ,
-       dpi = 300, scale = 1.3, 
+       dpi = 500, scale = 1.3, 
        device = cairo_pdf) 
 # second plot using viridis or RcolorBrewer====
 # mind that legend has been moved inside the map below. can move it to outside if needed (right or bottom)
@@ -72,8 +72,9 @@ plot2 <- ggplot()+
          title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption = "HateLab, 2019, by @SefaOzalp")+
-    hrbrthemes::theme_ipsum_rc()+
-    theme(plot.caption = element_text(size = 10))+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size = 14))+  
+    theme(plot.subtitle = element_text(size = 14))+
     theme(legend.position = c(0.1,0.25))# for positioning the legend inside the plot
 
 plot2
@@ -113,8 +114,9 @@ plot3 <- ggplot()+
          title="Racist and Xenophobic Incidents Reported by Other Source in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption = "HateLab, 2019, by @SefaOzalp")+
-    hrbrthemes::theme_ipsum_rc()+
-    theme(plot.caption = element_text(size = 10))+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size = 14))+   
+    theme(plot.subtitle = element_text(size = 14))+
     theme(legend.position = c(0.1,0.25))# for positioning the legend inside the plot
 
 plot3
@@ -147,8 +149,9 @@ plot4 <- ggplot()+
          title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption = "HateLab, 2019, by @SefaOzalp")+
-    hrbrthemes::theme_ipsum_rc()+
-    theme(plot.caption = element_text(size = 10))+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size = 14))+  
+    theme(plot.subtitle = element_text(size = 14))+
     theme(legend.position = c(0.1,0.25))# for positioning the legend inside the plot
 
 plot4
@@ -176,8 +179,9 @@ plot5 <- ggplot()+
          title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption = "HateLab, 2019, by @SefaOzalp")+
-    hrbrthemes::theme_ipsum_rc()+
-    theme(plot.caption = element_text(size = 10))+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size = 14))+   
+    theme(plot.subtitle = element_text(size = 14))+
     theme(legend.position = c(0.1,0.25))# for positioning the legend inside the plot
 plot5
 
@@ -207,8 +211,9 @@ plot6 <- ggplot()+
          title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption = "HateLab, 2019, by @SefaOzalp")+
-    hrbrthemes::theme_ipsum_rc()+
-    theme(plot.caption = element_text(size = 10))+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size = 14))+    
+    theme(plot.subtitle = element_text(size = 14))+
     theme(legend.position = c(0.1,0.25))+# for positioning the legend inside the plot
     theme(legend.key.size = unit(0.4, "in"))
 
@@ -217,7 +222,7 @@ plot6
 ggsave(filename = "viz/2018/Choropleth_002_other_org_2018.pdf",
        plot = plot6,
        width = 16*0.8, height = 9*0.8, units = "in" ,
-       dpi = 300, scale = 1.3, 
+       dpi = 500, scale = 1.3, 
        device = cairo_pdf)
 # much better! as they say, 6th time is the charm!
 
@@ -239,8 +244,9 @@ geom_map(data=osce_map_joined, map=map.world,
          title="Hate Crimes Recorded by the Police in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption = "HateLab, 2019, by @SefaOzalp")+
-    hrbrthemes::theme_ipsum_rc()+
-    theme(plot.caption = element_text(size = 10))+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size = 14))+   
+    theme(plot.subtitle = element_text(size = 14))+
     theme(legend.position = c(0.1,0.25))+# for positioning the legend inside the plot
     theme(legend.key.size = unit(0.4, "in"))
 
@@ -248,7 +254,7 @@ plot7
 
 ggsave(plot = plot7, filename = "viz/2018/Choropleth_002_police_2018.pdf",
        device = cairo_pdf,
-       width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+       width = 16*0.8, height = 9*0.8, units = "in" , dpi = 500, scale = 1.5)
 
 
 plot7_greyscale <- ggplot()+ 
@@ -268,14 +274,73 @@ plot7_greyscale <- ggplot()+
          title="Hate Crimes Recorded by the Police in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)",
          caption = "HateLab, 2019, by @SefaOzalp")+
-    hrbrthemes::theme_ipsum_rc()+
-    theme(plot.caption = element_text(size = 14))+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size = 14))+   
+    theme(plot.subtitle = element_text(size = 14))+
     theme(legend.position = c(0.1,0.25))+# for positioning the legend inside the plot
     theme(legend.key.size = unit(0.4, "in"))
 plot7_greyscale
 
 ggsave(plot = plot7_greyscale, filename = "viz/2018/Choropleth_002_police_2018_greyscale.pdf",
        device = cairo_pdf,
-       width = 16*0.8, height = 9*0.8, units = "in" , dpi = 300, scale = 1.5)
+       width = 16*0.8, height = 9*0.8, units = "in" , dpi = 500, scale = 1.5)
 
 
+
+
+
+plot6 <- ggplot()+ 
+    geom_map(data=osce_map_joined, map=map.world, 
+             aes(map_id=region, x=long, y=lat, fill=other_sources %>% log))+
+    geom_text(data=centroids_joined, aes(x=long, y=lat, label = other_sources), size=2.5)+
+    
+    scale_fill_gradientn (name="Incident Counts\n(Log Scale)",
+                          colours=rev(brewer.pal(9,"Spectral")),
+                          breaks= rep(1:10),
+                          labels=c( 5,10, 25, 100, 250, 500, 1000, 1500, 2000, 5000),
+                          na.value = "grey90",
+                          guide = "colourbar")+
+    coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
+    labs(x="Longitude", 
+         y='Latitude', 
+         title="Racist and Xenophobic Incidents Reported by Other Sources in 2018",
+         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
+         caption = "HateLab, 2019, by @SefaOzalp")+
+    hrbrthemes::theme_ipsum()+
+    theme(plot.caption = element_text(size = 14))+   
+    theme(plot.subtitle = element_text(size = 14))+
+    theme(legend.position = c(0.1,0.25))+# for positioning the legend inside the plot
+    theme(legend.key.size = unit(0.4, "in"))
+
+
+plot7_greyscale_log <- ggplot()+ 
+    geom_map(data=osce_map_joined, map=map.world, 
+             aes(map_id=region, x=long, y=lat, fill=police_records %>% log
+             ), 
+             colour="gray50")+
+    
+    scale_fill_gradient (low ="gray80" , high = "black",
+                         na.value = "white",
+                         name="Incident Counts\n(Log Scale)",
+                         guide = "colourbar")+
+    # geom_text(data=centroids_joined %>% filter(police_records>0), 
+    #           aes(x=long, y=lat, label = police_records), size=3.5)+
+    coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
+    labs(x="Longitude", 
+         y='Latitude', 
+         title="Hate Crimes Recorded by the Police in 2018",
+         subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)",
+         caption = "HateLab, 2019, by @SefaOzalp")+
+    hrbrthemes::theme_ipsum()+
+   
+    theme(plot.caption = element_text(size = 14))+
+    theme(plot.subtitle = element_text(size = 14))+
+    theme(legend.position = c(0.1,0.25))+# for positioning the legend inside the plot
+    theme(legend.key.size = unit(0.4, "in"))
+    
+
+plot7_greyscale_log
+
+ggsave(plot = plot7_greyscale_log, filename = "viz/2018/Choropleth_002_police_2018_greyscale_log.pdf",
+       device = cairo_pdf,
+       width = 16*0.8, height = 9*0.8, units = "in" , dpi = 500, scale = 1.5)
