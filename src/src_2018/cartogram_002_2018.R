@@ -20,7 +20,7 @@ calc_carto <-  function (dataset_path, value_col, country_code_col, shape_file_p
     ## with the degree of Gaussian blur = 0.5 (otherwise, it may not work)
     world_carto <- quick.carto(world, world@data$value, blur = blur)
     ## Convert the object into data frame
-    carto_fortified <- fortify(world_carto, region = "country_code")
+    carto_fortified <- broom::tidy(world_carto, region = "country_code")
     ## Merge the cartogram transformation with the world map shapefile
     world_carto_merge <- merge(carto_fortified, world@data, by.x = "id", by.y = "country_code")
     
@@ -94,7 +94,7 @@ cartogram_data_1 <- cartogram_data_1 %>%
 )
 
 
-carto_other_sources <- ggplot(cartogram_data_1, aes(long, lat, group = group, fill = cartogram_data_1$value %>% log2))+
+carto_other_sources <- ggplot(cartogram_data_1, aes(long, lat, group = group, fill = value %>% log2))+
     geom_polygon()+
     geom_text(data=cartogram_data_1, aes(x=longit, y=latid, label = label_text_civil),size=4)+ #cant ge this to work
     # geom_text(data=world.f2, aes(x=longit-3, y=latid, label = ISO3),size=4)+ #cant ge this to work
@@ -138,7 +138,7 @@ carto_other_sources_greyscale <- cartogram_data_1 %>%
     # coord_map(xlim=c(-180,180), ylim = c(-60, 150))+
     labs(x="Distorted Longitude", 
          y='Distorted Latitude', 
-         title="Hate Crimes Recorded by the Police in Participating States in 2018",
+         title="Hate Crimes Recorded by Other Sources in Participating States in 2018",
          subtitle="Source: Office for Democratic Institutions and Human Rights (ODIHR) of the\nOrganization for Security and Co-operation in Europe (OSCE)  ",
          caption="HateLab, 2020, by @SefaOzalp")+
     hrbrthemes::theme_ipsum()+
@@ -254,6 +254,9 @@ ggsave(plot=carto_police_records, filename = "viz/2018/cartogram_002_police_labe
        device = cairo_pdf,
        width = 16*0.8, height = 9*0.8, units = "in" , dpi = 500, scale = 1.5)
 
+ggsave(plot=carto_police_records, filename = "viz/2018/cartogram_002_police_labels.eps",
+       device = cairo_ps,
+       width = 16*0.8, height = 9*0.8, units = "in" , dpi = 500, scale = 1.5)
 
 
 carto_police_records_greyscale <- cartogram_data_police_1 %>% 

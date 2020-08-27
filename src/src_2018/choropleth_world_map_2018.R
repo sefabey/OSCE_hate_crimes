@@ -255,7 +255,9 @@ plot7
 ggsave(plot = plot7, filename = "viz/2018/Choropleth_002_police_2018.pdf",
        device = cairo_pdf,
        width = 16*0.8, height = 9*0.8, units = "in" , dpi = 500, scale = 1.5)
-
+ggsave(plot = plot7, filename = "viz/2018/Choropleth_002_police_2018.eps",
+       device = cairo_ps,
+       width = 16*0.8, height = 9*0.8, units = "in" , dpi = 500, scale = 1.5)
 
 plot7_greyscale <- ggplot()+ 
     geom_map(data=osce_map_joined, map=map.world, 
